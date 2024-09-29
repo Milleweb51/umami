@@ -20,6 +20,12 @@
   min-width: 0;
 }
 
+.logoIcon {
+  border-radius: 50%;
+  padding: 5px;
+  background: var(--light100);
+}
+
 .links {
   display: flex;
   flex-direction: row;
