@@ -33,6 +33,7 @@ export const labels = defineMessages({
   member: { id: 'label.member', defaultMessage: 'Member' },
   members: { id: 'label.members', defaultMessage: 'Members' },
   accessCode: { id: 'label.access-code', defaultMessage: 'Access code' },
+  isFavorite: { id: 'label.is-favorite', defaultMessage: 'Add to favorites' },
   teamId: { id: 'label.team-id', defaultMessage: 'Team ID' },
   team: { id: 'label.team', defaultMessage: 'Team' },
   teamName: { id: 'label.team-name', defaultMessage: 'Team name' },
@@ -317,7 +318,7 @@ export const messages = defineMessages({
   trackingCode: {
     id: 'message.tracking-code',
     defaultMessage:
-      'To track stats for this website, place the following code in the <head>...</head> section of your HTML.',
+      'To track stats for this website, place the following code in the <head>...<title></title></head> section of your HTML.',
   },
   joinTeamWarning: {
     id: 'message.team-already-member',

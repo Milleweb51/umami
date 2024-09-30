@@ -5,6 +5,12 @@
       "value": "Access code"
     }
   ],
+  "label.is-favorite": [
+    {
+      "type": 0,
+      "value": "Add to favorites"
+    }
+  ],
   "label.actions": [
     {
       "type": 0,

@@ -8,6 +8,7 @@ import {
   Button,
   Flexbox,
   useToasts,
+  Toggle,
 } from 'react-basics';
 import { getRandomChars } from 'next-basics';
 import { useContext, useRef, useState } from 'react';
@@ -28,6 +29,7 @@ export function TeamEditForm({ teamId, allowEdit }: { teamId: string; allowEdit?
   const { showToast } = useToasts();
   const { touch } = useModified();
   const cloudMode = !!process.env.cloudMode;
+  const [isFav, setIsFav] = useState(window.localStorage.getItem('umami.fav-team') === teamId);
 
   const handleSubmit = async (data: any) => {
     mutate(data, {
@@ -46,6 +48,16 @@ export function TeamEditForm({ teamId, allowEdit }: { teamId: string; allowEdit?
       shouldDirty: true,
     });
     setAccessCode(code);
+  };
+
+  const handleCheckIsFav = (checked: boolean) => {
+    if (checked) {
+      window.localStorage.setItem('umami.fav-team', String(teamId));
+      setIsFav(checked);
+    } else {
+      setIsFav(checked);
+      window.localStorage.removeItem('umami.fav-team');
+    }
   };
 
   return (
@@ -69,6 +81,9 @@ export function TeamEditForm({ teamId, allowEdit }: { teamId: string; allowEdit?
               <Button onClick={handleRegenerate}>{formatMessage(labels.regenerate)}</Button>
             )}
           </Flexbox>
+          <Toggle checked={Boolean(isFav)} onChecked={handleCheckIsFav} style={{ marginTop: 30 }}>
+            {formatMessage(labels.isFavorite)}
+          </Toggle>
         </FormRow>
       )}
       {allowEdit && (

@@ -22,7 +22,6 @@ export function TeamProvider({ teamId, children }: { teamId?: string; children: 
   if (teamId && !team) {
     return null;
   }
-
   return <TeamContext.Provider value={team}>{children}</TeamContext.Provider>;
 }
 

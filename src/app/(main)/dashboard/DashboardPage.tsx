@@ -9,6 +9,8 @@ import EmptyPlaceholder from 'components/common/EmptyPlaceholder';
 import { useMessages, useLocale, useTeamUrl, useWebsites } from 'components/hooks';
 import useDashboard from 'store/dashboard';
 import LinkButton from 'components/common/LinkButton';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export function DashboardPage() {
   const { formatMessage, labels, messages } = useMessages();
@@ -16,14 +18,22 @@ export function DashboardPage() {
   const { showCharts, editing } = useDashboard();
   const { dir } = useLocale();
   const pageSize = 10;
+  const router = useRouter();
 
   const { result, query, params, setParams } = useWebsites({ teamId }, { pageSize });
   const { page } = params;
   const hasData = !!result?.data?.length;
+  const favTeamId = window.localStorage.getItem('umami.fav-team');
 
   const handlePageChange = (page: number) => {
     setParams({ ...params, page });
   };
+
+  useEffect(() => {
+    if (favTeamId) {
+      router.push('/teams/' + favTeamId);
+    }
+  }, []);
 
   if (query.isLoading) {
     return <Loading />;
